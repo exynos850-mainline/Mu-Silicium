@@ -1,0 +1,8 @@
+REPO:   https://github.com/LineageOS/android_kernel_samsung_universal9830/
+BRANCH: lineage-23.2
+FILES:  drivers/phy/samsung/phy-exynos-usb3p1.c
+        drivers/phy/samsung/phy-exynos-usb3p1-reg.h
+        drivers/phy/samsung/phy-exynos-usbdrd.c
+        drivers/phy/samsung/phy-samsung-usb-cal.h
+
+* fdt dump from 3830 stock was used for the phy registers

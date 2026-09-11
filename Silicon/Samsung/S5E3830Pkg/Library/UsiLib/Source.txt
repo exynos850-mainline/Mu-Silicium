@@ -1,0 +1,3 @@
+REPO:   https://github.com/torvalds/linux
+BRANCH: master
+FILES:  arch/arm64/boot/dts/exynos850.dtsi
