@@ -4,11 +4,6 @@ STATIC
 EFI_PMIC_DATA
 gPmicData = {
   {
-    {
-      .Id        = ID_S2MPU12,
-      .BusNumber = 0
-    }
-  },
   {
     {
       .Id        = ID_S2MPB03,
