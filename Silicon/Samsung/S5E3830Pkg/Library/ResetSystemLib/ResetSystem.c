@@ -14,14 +14,11 @@
 #include <Library/ResetSystemLib.h>
 #include <Library/IoLib.h>
 
-#include <Protocol/EFIPmicExtra.h>
-
 #include "Pmu.h"
 
 //
 // Global Variables
 //
-STATIC EFI_PMIC_EXTRA_PROTOCOL      *mPmicExtraProtocol = NULL;
 STATIC EFI_MEMORY_REGION_DESCRIPTOR  mPmuRegion         = {0};
 
 VOID
@@ -78,36 +75,9 @@ ResetShutdown ()
 {
   EFI_STATUS Status;
 
-  // Verify PMIC Extra Protocol Presence
-  if (mPmicExtraProtocol == NULL) {
-    DEBUG ((EFI_D_WARN, "%a: The PMIC Extra Protocol isn't Registered!\n", __FUNCTION__));
-    return;
-  }
-
   // Verify PMU Memory Region Presence
   if (mPmuRegion.Address == 0 && mPmuRegion.Length == 0) {
     DEBUG ((EFI_D_WARN, "%a: The \"PMU\" Memory Region isn't Mapped!\n", __FUNCTION__));
-    return;
-  }
-
-  // Disable WTSR
-  Status = mPmicExtraProtocol->SetWtsr (ID_S2MPS19, FALSE);
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "%a: Failed to Disable WTSR! Status = %r\n", __FUNCTION__, Status));
-    return;
-  }
-
-  // Disable SMPL
-  Status = mPmicExtraProtocol->SetSmpl (ID_S2MPS19, FALSE);
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "%a: Failed to Disable SMPL! Status = %r\n", __FUNCTION__, Status));
-    return;
-  }
-
-  // Power Down PMIC
-  Status = mPmicExtraProtocol->PowerDown (ID_S2MPS22);
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "%a: Failed to Power Down PMIC! Status = %r\n", __FUNCTION__, Status));
     return;
   }
 
@@ -193,12 +163,6 @@ ResetSystemLibConstructor (
   IN EFI_SYSTEM_TABLE *SystemTable)
 {
   EFI_STATUS Status;
-
-  // Locate PMIC Extra Protocol
-  Status = gBS->LocateProtocol (&gEfiPmicExtraProtocolGuid, NULL, (VOID *)&mPmicExtraProtocol);
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "Failed to Locate PMIC Extra Protocol! Status = %r\n", Status));
-  }
 
   // Locate PMU Memory Region
   Status = LocateMemoryRegionByName ("PMU", &mPmuRegion);

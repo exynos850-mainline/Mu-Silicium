@@ -29,6 +29,3 @@
   UefiBootServicesTableLib
   MemoryMapHelperLib
   IoLib
-
-[Protocols]
-  gEfiPmicExtraProtocolGuid
