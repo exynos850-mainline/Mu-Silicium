@@ -81,7 +81,7 @@
   #
   # Power Management Libraries
   #
-  #PmicLib|S5E3830Pkg/Library/PmicLib/PmicLib.inf
+#  PmicLib|S5E3830Pkg/Library/PmicLib/PmicLib.inf
 # TODO: PMIC bringup
 
   #
