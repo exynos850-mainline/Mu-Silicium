@@ -73,7 +73,7 @@ VOID
 EFIAPI
 ResetShutdown ()
 {
-  EFI_STATUS Status;
+//  EFI_STATUS Status;
 
   // Verify PMU Memory Region Presence
   if (mPmuRegion.Address == 0 && mPmuRegion.Length == 0) {
