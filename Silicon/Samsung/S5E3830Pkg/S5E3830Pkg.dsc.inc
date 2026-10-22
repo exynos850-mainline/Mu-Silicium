@@ -73,6 +73,11 @@
   PlatformSecLib|S5E3830Pkg/Library/PlatformSecLib/PlatformSecLib.inf
 
   #
+  # Memory Libraries
+  #
+  RamManagerLib|SiliciumNullPkg/Library/RamManagerLibNull/RamManagerLibNull.inf
+
+  #
   # UEFI Libraries
   #
   HwResetSystemLib|S5E3830Pkg/Library/ResetSystemLib/ResetSystemLib.inf
