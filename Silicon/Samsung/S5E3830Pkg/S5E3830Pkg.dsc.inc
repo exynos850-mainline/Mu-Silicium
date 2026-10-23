@@ -86,7 +86,7 @@
   #
   # IO Libraries
   #
-  GpioLib|S5E3830Pkg/Library/GpioLib/GpioLib.inf
+  GpioBankLib|S5E3830Pkg/Library/GpioBankLib/GpioBankLib.inf
   HsI2cLib|S5E3830Pkg/Library/HsI2cLib/HsI2cLib.inf
 
   #
