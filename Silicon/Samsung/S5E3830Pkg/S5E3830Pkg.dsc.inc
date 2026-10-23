@@ -98,7 +98,7 @@
   #
   # Storage Libraries
   #
-# TODO: MMC
+  PlatformMshcLib|S5E3830Pkg/Library/PlatformMshcLib/PlatformMshcLib.inf
 
   #
   # USB Libraries
