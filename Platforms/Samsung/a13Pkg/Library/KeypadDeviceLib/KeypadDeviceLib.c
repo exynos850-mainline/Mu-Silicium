@@ -175,9 +175,8 @@ LibKeyUpdateKeyStatus (
 
 STATIC KEY_CONTEXT_PRIVATE KeyContextVolumeUp;
 STATIC KEY_CONTEXT_PRIVATE KeyContextVolumeDown;
-STATIC KEY_CONTEXT_PRIVATE KeyContextPower;
 
-STATIC KEY_CONTEXT_PRIVATE *KeyList[] = { &KeyContextVolumeUp, &KeyContextVolumeDown, &KeyContextPower };
+STATIC KEY_CONTEXT_PRIVATE *KeyList[] = { &KeyContextVolumeUp, &KeyContextVolumeDown};
 
 STATIC
 VOID
@@ -196,8 +195,6 @@ KeypadKeyCodeToKeyContext (UINT32 KeyCode)
     return &KeyContextVolumeUp;
   } else if (KeyCode == 116) {
     return &KeyContextVolumeDown;
-  } else if (KeyCode == 117) {
-    return &KeyContextPower;
   }
 
   return NULL;
@@ -231,12 +228,6 @@ KeypadDeviceConstructor ()
     StaticContext->BankNumber = 1;
     StaticContext->BankId     = BANK_ID_A;
     StaticContext->Pin        = 0x0;
-
-    /// Power Button
-    StaticContext             = KeypadKeyCodeToKeyContext (117);
-    StaticContext->BankNumber = 2;
-    StaticContext->BankId     = BANK_ID_A;
-    StaticContext->Pin        = 0x4;
   } else {
     DEBUG ((EFI_D_ERROR, "%a: Failed to Locate GPIO Protocol! Status = %r\n", __FUNCTION__, Status));
   }
@@ -253,9 +244,6 @@ KeypadDeviceReset (KEYPAD_DEVICE_PROTOCOL *This)
 
   LibKeyInitializeKeyContext(&KeyContextVolumeDown.EfiKeyContext);
   KeyContextVolumeDown.EfiKeyContext.KeyData.Key.ScanCode = SCAN_DOWN;
-
-  LibKeyInitializeKeyContext(&KeyContextPower.EfiKeyContext);
-  KeyContextPower.EfiKeyContext.KeyData.Key.UnicodeChar   = CHAR_CARRIAGE_RETURN;
 
   return EFI_SUCCESS;
 }
