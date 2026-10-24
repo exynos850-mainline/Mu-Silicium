@@ -142,7 +142,6 @@ LibKeyUpdateKeyStatus (
           }
 
           Context->Longpress = TRUE;
-        }
       } else {
         if (!Context->Longpress) {
           // We Supressed Down, so Report it Now
@@ -156,7 +155,6 @@ LibKeyUpdateKeyStatus (
           Context->State     = KEYSTATE_RELEASED;
         }
       }
-
       break;
 
     case KEYSTATE_LONGPRESS_RELEASE:
@@ -176,7 +174,7 @@ LibKeyUpdateKeyStatus (
 STATIC KEY_CONTEXT_PRIVATE KeyContextVolumeUp;
 STATIC KEY_CONTEXT_PRIVATE KeyContextVolumeDown;
 
-STATIC KEY_CONTEXT_PRIVATE *KeyList[] = { &KeyContextVolumeUp, &KeyContextVolumeDown};
+STATIC KEY_CONTEXT_PRIVATE *KeyList[] = { &KeyContextVolumeUp, &KeyContextVolumeDown };
 
 STATIC
 VOID
@@ -228,6 +226,7 @@ KeypadDeviceConstructor ()
     StaticContext->BankNumber = 1;
     StaticContext->BankId     = BANK_ID_A;
     StaticContext->Pin        = 0x0;
+
   } else {
     DEBUG ((EFI_D_ERROR, "%a: Failed to Locate GPIO Protocol! Status = %r\n", __FUNCTION__, Status));
   }
@@ -240,10 +239,11 @@ EFIAPI
 KeypadDeviceReset (KEYPAD_DEVICE_PROTOCOL *This)
 {
   LibKeyInitializeKeyContext(&KeyContextVolumeUp.EfiKeyContext);
-  KeyContextVolumeUp.EfiKeyContext.KeyData.Key.ScanCode   = SCAN_UP;
+  KeyContextVolumeUp.EfiKeyContext.KeyData.Key.ScanCode = SCAN_UP;
 
+//note changed from scan_down
   LibKeyInitializeKeyContext(&KeyContextVolumeDown.EfiKeyContext);
-  KeyContextVolumeDown.EfiKeyContext.KeyData.Key.ScanCode = SCAN_DOWN;
+  KeyContextVolumeDown.EfiKeyContext.KeyData.Key.ScanCode = CHAR_CARRIAGE_RETURN;
 
   return EFI_SUCCESS;
 }
@@ -254,8 +254,8 @@ KeypadDeviceGetKeys (
   KEYPAD_RETURN_API      *KeypadReturnApi,
   UINT64                  Delta)
 {
-  EFI_STATUS Status    = EFI_SUCCESS;
-  BOOLEAN    IsPressed = FALSE;
+  EFI_STATUS Status = EFI_SUCCESS;
+  BOOLEAN    State  = FALSE;
 
   if (mGpioProtocol == NULL) {
     return EFI_SUCCESS;
@@ -264,12 +264,12 @@ KeypadDeviceGetKeys (
   for (UINTN Index = 0; Index < (sizeof(KeyList) / sizeof(KeyList[0])); Index++) {
     KEY_CONTEXT_PRIVATE *Context = KeyList[Index];
 
-    Status = mGpioProtocol->GetState (Context->BankId, Context->BankNumber, Context->Pin, &IsPressed);
+    Status = mGpioProtocol->GetState (Context->BankId, Context->BankNumber, Context->Pin, &State);
     if (EFI_ERROR (Status)) {
       return Status;
     }
 
-    LibKeyUpdateKeyStatus (&Context->EfiKeyContext, KeypadReturnApi, !IsPressed, Delta);
+    LibKeyUpdateKeyStatus (&Context->EfiKeyContext, KeypadReturnApi, !State, Delta);
   }
 
   return EFI_SUCCESS;
