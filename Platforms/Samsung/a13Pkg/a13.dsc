@@ -66,12 +66,21 @@
   #
   KeypadDeviceLib|a13Pkg/Library/KeypadDeviceLib/KeypadDeviceLib.inf
 
+  # UniXNU
+  UniXNULib|UniXNUPkg/Library/UniXNULib/UniXNULib.inf
+
 [Components]
   #
   # ACPI Tables
   #
-  DarwinBootPkg/Driver/DarwinBoot.inf
   #a13/AcpiTables.inf
+
+  # UniXNU
+  UniXNUPkg/Application/UniXNU/UniXNU.inf
+  UniXNUPkg/Driver/UniXNUDxe/UniXNUDxe.inf
+
+  # DarwinBoot
+  DarwinBootPkg/Driver/DarwinBoot.inf
 
   #
   # Input
