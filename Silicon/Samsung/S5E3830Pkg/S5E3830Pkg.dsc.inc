@@ -75,13 +75,7 @@
   #
   # Memory Libraries
   #
-  RamManagerLib|SiliciumNullPkg/Library/RamManagerLibNull/RamManagerLibNull.inf
-
-  #
-  # UEFI Libraries
-  #
-  HwResetSystemLib|S5E3830Pkg/Library/ResetSystemLib/ResetSystemLib.inf
-  ResetSystemLib|S5E3830Pkg/Library/ResetSystemLib/ResetSystemLib.inf
+#  RamManagerLib|SiliciumNullPkg/Library/RamManagerLibNull/RamManagerLibNull.inf
 
   #
   # IO Libraries
