@@ -49,6 +49,12 @@
   gSiliciumPkgTokenSpaceGuid.PcdTimerFreqOverwrite|26000000
 
   #
+  # ACPM
+  # List Contents: 0x11900000, 0x0203C200
+  #
+  gSamsungPkgTokenSpaceGuid.PcdAcpmBusAddr|{ 0x00, 0x00, 0x90, 0x11, 0x00, 0xC2, 0x03, 0x02 }
+
+  #
   # GPIO
   # List Contents: 0x11850000, 0x11C30000, 0x12070000, 0x13430000, 0x139B0000, 0x14A60000
   #
