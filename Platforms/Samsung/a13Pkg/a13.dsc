@@ -70,6 +70,7 @@
   #
   # ACPI Tables
   #
+  DarwinBootPkg/Driver/DarwinBoot.inf
   #a13/AcpiTables.inf
 
   #
