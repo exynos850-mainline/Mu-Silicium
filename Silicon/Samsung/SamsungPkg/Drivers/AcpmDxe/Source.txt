@@ -1,0 +1,5 @@
+REPO:   https://github.com/exynos990-mainline/lk3rd/
+BRANCH: dev
+FILES:  dev/acpm/lk_acpm_ipc.c      (COMMIT: 8742f9aa3d5a60e097003d226da2d3ee30fa7018)
+	dev/acpm/lk_acpm_mfd.h (COMMIT: 897ad1286b518e6ab8aeeab2680734e0f19d6b48)
+        include/dev/lk_acpm_ipc.h (COMMIT: 6bc86b9a550c3279c25032e328691658ac6494c4)

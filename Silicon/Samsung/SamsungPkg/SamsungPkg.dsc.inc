@@ -67,6 +67,7 @@
   #
   # IO Drivers
   #
+  SamsungPkg/Drivers/AcpmDxe/AcpmDxe.inf
   SamsungPkg/Drivers/GpioDxe/GpioDxe.inf
   SamsungPkg/Drivers/SpeedyDxe/SpeedyDxe.inf
   SamsungPkg/Drivers/HsI2cDxe/HsI2cDxe.inf

@@ -1,0 +1,33 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AcpmDxe
+  FILE_GUID                      = 6538B9E9-F3B8-4D43-9F57-39A28BBEB386
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitAcpm
+
+[Sources]
+  Acpm.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  SiliciumPkg/SiliciumPkg.dec
+  SamsungPkg/SamsungPkg.dec
+
+[LibraryClasses]
+  DebugLib
+  MemoryAllocationHelperLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  PcdLib
+  IoLib
+
+[FixedPcd]
+  gSamsungPkgTokenSpaceGuid.PcdAcpmBusAddr
+
+[Protocols]
+  gEfiAcpmProtocolGuid
+
+[Depex]
+  TRUE
