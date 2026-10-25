@@ -58,7 +58,6 @@
   # RAM Manager
   #
   gSamsungPkgTokenSpaceGuid.PcdHasSecurePgtbl|TRUE
-  gSamsungPkgTokenSpaceGuid.PcdHasHarx|TRUE
 
   #
   # SMBIOS
